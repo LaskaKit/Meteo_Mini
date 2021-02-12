@@ -23,11 +23,7 @@
 #include <Adafruit_BME280.h>
 #include <DallasTemperature.h>
 
-//TODO add SHT10x 
-#ifdef DALLAS
-#define DSPIN D4
-#endif
-
+#define DSPIN 2
 #define BME280_ADDRESS (0x76)   // (0x77) cut left and solder right pad on board
 #define OFFSET 0.00             // offset pro mereni napeti baterie
 #define SLEEP_SEC 15*60         // Measurement interval (seconds)
@@ -146,7 +142,7 @@ void setup() {
   WiFi.forceSleepBegin();
   delay( 1 );
 
-  Serial.begin(115200);
+  Serial.begin(9600);
   while(!Serial) {} // Wait
   
   pinMode(A0, INPUT);
