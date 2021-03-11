@@ -16,9 +16,6 @@
 ## Notepad++ backup files
 *.bak
 
-## BOM files
-*bom*
-
 #############
 ## Eagle
 #############
