@@ -76,6 +76,6 @@ Vytvořili jsme i vzorový kód. Ten najdete na https://github.com/LaskaKit/Weat
 
 Meteo Mini čte z čidel teplotu, tlak a vlhkost a posílá je do služby Thingspeak.
 
-K dispozici je i stavebnice, kterou můžete zakoupit na laskarduino.cz
+K dispozici je osazená deska bez I2C konektoru, kterou můžete zakoupit na laskarduino.cz
 https://www.laskarduino.cz/laskakit-meteo-mini
 
