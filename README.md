@@ -76,3 +76,11 @@ Meteo Mini reads the temperature, humidity and pressure from sensors and sends d
 
 You can buy assembled board which is available on https://www.laskarduino.cz/laskakit-meteo-mini
 
+We also provide 3D file for case which you can print on 3D printer...
+
+![LaskaKit Meteo Mini 3D case](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_3Dcase.jpg)
+
+... and we are really using this Meteo Mini as a weather station with solar panel.
+
+![LaskaKit Meteo Mini Weather Station](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_weatherstation.jpg)
+
