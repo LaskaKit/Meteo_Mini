@@ -79,3 +79,10 @@ Meteo Mini čte z čidel teplotu, tlak a vlhkost a posílá je do služby Things
 K dispozici je osazená deska bez I2C konektoru, kterou můžete zakoupit na laskarduino.cz
 https://www.laskarduino.cz/laskakit-meteo-mini
 
+K dispozici je i soubor pro tisk krabičky na 3D tiskárně...
+
+![LaskaKit Meteo Mini 3D case](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_3Dcase.jpg)
+
+... a to, co prodáváme, opravdu sami používáme.
+
+![LaskaKit Meteo Mini Weather Station](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_weatherstation.jpg)
