@@ -30,6 +30,8 @@ All extension boards you can find on this website: [https://www.laskarduino.cz/e
 
 ![LaskaKit Meteo Mini Wemos](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/LaskaKit_MeteoMini_pinout_wemos.jpg)
 
+The power consumption of Meteo Mini is only 32,3uA in case it is powered from battery. If you power it from +5V, the current in deep-sleep mode is 34,2 uA.
+
 ## Programming
 
 Install the ESP8266 package in Arduino IDE.
