@@ -32,6 +32,8 @@ Všechny moduly najdete na [https://www.laskarduino.cz/esp-a-wemos/](https://www
 
 ![LaskaKit Meteo Mini Wemos](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/LaskaKit_MeteoMini_pinout_wemos.jpg)
 
+Spotřeba Meteo Mini je opravdu nízká. V případě napájení z akumulátoru, je spotřeba desky v deep-sleep mode pouze 32,3uA. Pokud napájíte desku z +5V pak se proud mírně zvýší na 34,2 uA.
+
 ## Programování
 
 V Arduino IDE nainstalujte podporu ESP8266
