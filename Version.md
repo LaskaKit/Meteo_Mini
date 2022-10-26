@@ -1,4 +1,7 @@
-### Version 3.1
+### Version 3.2
+- i2C pins were swapped to mit Wemos D1 mini shields spec. | Piny i2C byly prohozený aby odpovídali shieldům pro Wemos D1.
+- ADC jumper now is closed by default | Propojka ADC je nyní ve výchozím nastavení uzavřena
+#### Version 3.1
 Adjusted resistor values in the resistance divider to 1M/1.3M, ADC max. input voltage stays the same. | Upraveny hodnoty rezistorů v odporovém děliči na 1M/1.3M, ADC max. vstupní napětí zůstává stejné.
 #### Version 3.0
 Change ESP12 to ESP32-C3| Změna ESP12 na ESP32-C3
