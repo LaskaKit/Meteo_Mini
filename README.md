@@ -20,6 +20,8 @@ The connector on the bottom side is used for programming of ESP32-C3.
 
 The power consumption of Meteo Mini is only 8 uA, what is 4x less than the previous version with ESP8266.
 
+![LaskaKit Meteo Mini with ESP32-C3 pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini-top_pinout.png)
+
 ## Programming
 
 Install the [ESP8266 package](https://github.com/espressif/arduino-esp32) in Arduino IDE.
