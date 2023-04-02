@@ -24,7 +24,7 @@ Na spodní části pak najdete programovací konektor.
 
 Spotřeba Meteo Mini s ESP32-C3 je opravdu nízká. V případě napájení z akumulátoru, je spotřeba desky v deep-sleep mode pouze 8 uA. Což je 4x méně než u předchozí verze. 
 
-![LaskaKit Meteo Mini with ESP32-C3 pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_ESP32-C3_pinout.jpg)
+![LaskaKit Meteo Mini with ESP32-C3 pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_ESP32-C3_pin.jpg)
 
 ## Programování
 
