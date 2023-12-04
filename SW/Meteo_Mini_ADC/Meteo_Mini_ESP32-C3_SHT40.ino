@@ -7,7 +7,7 @@
 * SDA - GPIO19
 * SCL - GPIO18
 *
-* Vytvoreno (c) laskarduino.cz 2023
+* Vytvoreno (c) laskakit.cz 2023
 *
 * Potrebne knihovny:
 * https://github.com/adafruit/Adafruit_SHT4X
