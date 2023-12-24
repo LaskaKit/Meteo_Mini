@@ -1,4 +1,8 @@
-### Version 3.2
+### Version 3.5
+- změna modulu ESP na ESP32-C3-MINI
+- integrován programátor
+- přidán spínaný stabilizátor pro napájení periferií - AP2191WG + ME6211C33M5G
+#### Version 3.2
 - i2C pins were swapped to mit Wemos D1 mini shields spec. | Piny i2C byly prohozený aby odpovídali shieldům pro Wemos D1.
 - ADC jumper now is closed by default | Propojka ADC je nyní ve výchozím nastavení uzavřena
 #### Version 3.1
