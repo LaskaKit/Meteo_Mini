@@ -1,9 +1,11 @@
 /*
-* Vzorovy kod od laskarduino.cz pro SHT40 s vyvojovym kitem Meteo Mini s ESP32-C3
+* Vzorovy kod od laskakit.cz pro SHT40 s vyvojovym kitem Meteo Mini s ESP32-C3
 * Kod posle pres seriovy port (UART)
 * hodnoty teploty a vlhkosti z SHT40
 * kazdou sekundu
-*
+* Boards:
+* https://www.laskakit.cz/laskakit-meteo-mini/
+* https://www.laskakit.cz/laskakit-sht40-senzor-teploty-a-vlhkosti-vzduchu/
 * SDA - GPIO19
 * SCL - GPIO18
 *
@@ -15,7 +17,10 @@
  
 #include <Wire.h>
 #include "Adafruit_SHT4x.h"
- 
+#define SDA 19
+#define SCL 18
+#define PIN_ON 3
+
 Adafruit_SHT4x sht4 = Adafruit_SHT4x();
  
 void setup() {
@@ -25,7 +30,11 @@ void setup() {
     ; // cekani na Serial port
   }
 
-  Wire.begin(19, 18); // SDA, SCL
+  // for version over 3.5 need to turn uSUP ON
+  pinMode(PIN_ON, OUTPUT);      // Set EN pin for uSUP stabilisator as output
+  digitalWrite(PIN_ON, HIGH);   // Turn on the uSUP power
+
+  Wire.begin(SDA, SCL);
  
   if (! sht4.begin()) 
   {

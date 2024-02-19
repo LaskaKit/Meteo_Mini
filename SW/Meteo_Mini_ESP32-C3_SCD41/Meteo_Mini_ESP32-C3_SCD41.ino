@@ -18,14 +18,21 @@
   
 #include <Wire.h>
 #include "SparkFun_SCD4x_Arduino_Library.h"
+#define SDA 19
+#define SCL 18
+#define PIN_ON 3
 
 SCD4x SCD41;
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("SCD41 and MeteoMini example code");
-  Wire.begin(19, 18); // SDA, SCL
+  // for version over 3.5 need to turn uSUP ON
+  pinMode(PIN_ON, OUTPUT);      // Set EN pin for uSUP stabilisator as output
+  digitalWrite(PIN_ON, HIGH);   // Turn on the uSUP power
 
+  Wire.begin(SDA, SCL);
+
+  Serial.println("SCD41 and MeteoMini example code");
   //             begin, autoCalibrate
   //               |      |
   if (SCD41.begin(false, true) == false)

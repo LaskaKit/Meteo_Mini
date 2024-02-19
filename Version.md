@@ -1,7 +1,11 @@
-### Version 3.5
+### Version 3.6
+- přidán kondenzátor C8 na vstup spínače AP2191
+#### Version 3.5
+* nevypíná se spínaný stabilizátor pokud není na výstup připojena zátěž a deska v deepsleepu bere cca 200uA.
+problém odstraněn přidáním kondenzátoru C8 na vstup spínače AP2191
 - změna modulu ESP na ESP32-C3-MINI
 - integrován programátor
-- přidán spínaný stabilizátor pro napájení periferií - AP2191WG + ME6211C33M5G
+- přidán spínaný stabilizátor pro napájení periferií - AP2191WG + ME6211C33M5G (pin IO03)
 #### Version 3.2
 - i2C pins were swapped to mit Wemos D1 mini shields spec. | Piny i2C byly prohozený aby odpovídali shieldům pro Wemos D1.
 - ADC jumper now is closed by default | Propojka ADC je nyní ve výchozím nastavení uzavřena
