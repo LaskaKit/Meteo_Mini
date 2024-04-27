@@ -13,7 +13,7 @@ Na přední straně desky najdeš Wi-Fi modul s ESP32-C3. Ten disponuje vyšší
 Tento modul podporuje standard IEEE 802.11 b/g/n. Dále na desce najdeš dvě tlačítka pro nahrávání kódu - FLASH a RESET. Postup pro programování bude vysvětlen níže.
 Dále zde najdeš i pájecí most nazvaný CH_CURRENT - propájením tohoto mostu vybereš maximální nabíjecí proud do akumulátoru - 260mA a 400mA (výchozí).
 Celou desku můžeš vypnout díky vypínači na levé straně. Na pravé straně se pak nachází USB-C konektor (žádný microUSB :) ) určený pro nabíjení akumulátoru. Na spodní straně je konektor pro připojení Li-ion akumulátoru (Battery) a druhý konektor pro připojení solárního panelu (solar). </br>
-Na pravé straně ještě najdeš 1-wire sběrnici, kam můžeš zapájet teplotní čidlo DS18B20. Na levé straně desky se nachází μŠup - což je náš standardní typ konektoru, kompatibilní s SparkFun Qwiic a Adafruit STEMMA. </br>
+Na pravé straně ještě najdeš 1-wire sběrnici, kam můžeš zapájet teplotní čidlo DS18B20 (datový pin je připojen k GPIO10). Na levé straně desky se nachází μŠup - což je náš standardní typ konektoru, kompatibilní s SparkFun Qwiic a Adafruit STEMMA. </br>
 S tímto konektorem máme i vlastní moduly - [SHT40 (teplota/vlhkost)](https://www.laskakit.cz/laskakit-sht40-senzor-teploty-a-vlhkosti-vzduchu/) nebo [SCD41 (teplota/vlhkost/CO2)](https://www.laskakit.cz/laskakit-scd41-senzor-co2--teploty-a-vlhkosti-vzduchu/).</br> Napájení uŠup konektoru je řízeno skrze GPIO3 (high - 3.3V připojeno). Tím můžete docílit ještě nižší spotřeby celého zařízení.
 
 Regulátor na 3.3V se nachází přímo na desce Meteo Mini. </br>
