@@ -3,7 +3,7 @@ The weather station is one of the famous project which makers are looking for.</
 Of course, you can blink with LED, it is nice start, but after ten blinks it is boring. If you make an weather station, you will be satisfied with yourself because when it is working longer, you have better results and charts of measuring of temperature, humidity, pressure... whatever. </br>
 We know not all of makers are able to design a board, so we are comming with our weather station board called [LaskaKit Meteo Mini](https://www.laskarduino.cz/laskakit-meteo-mini).</br>
 
-![LaskaKit Meteo Mini with ESP32-C3](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/1.jpg)
+![LaskaKit Meteo Mini with ESP32-C3](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/1.jpg) ![LaskaKit Meteo Mini v3.5 and newer](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini-C3_v3.5_1.JPG)
 
 This evaluation board which includes Wi-Fi module ESP32-C3 should help you to speed up the development of your project. It contains everything what you need.</br>
 Is there something missing? No problem, you can adjust the board by extension modules, because Meteo Mini includes μŠup connector where you can connect a lot of sensors.</br>
@@ -13,19 +13,22 @@ Is there something missing? No problem, you can adjust the board by extension mo
 On the TOP side, you see the Wi-Fi module with ESP32-C3. 
 This Wi-Fi module supports IEEE 802.11 b/g/n. Two buttons (FLASH and RESET), soldering bridge the choose of charging current to battery.</br>
 The board may be completely off thanks to switch on the left side on the board. On the right side, you may see the USB-C (not microUSB ;-) ) connector used only charging of Li-ion battery. As you can see, there are two 2-pins connectors, one is used for Li-ion battery (BATTERY) and second one is used for solar panel (SOLAR).
-There is also 1-wire bus which you can connect the board with temperature sensor DS18B20. On the left side is our already mentioned μŠup connector. You can easily and quicly connect [SHT40 (temperature/humidity)](https://www.laskakit.cz/laskakit-sht40-senzor-teploty-a-vlhkosti-vzduchu/) and [SCD41 (temperature/humidity/CO2)](https://www.laskakit.cz/laskakit-scd41-senzor-co2--teploty-a-vlhkosti-vzduchu/).
+There is also 1-wire bus which you can connect the board with temperature sensor DS18B20. On the left side is our already mentioned μŠup connector. You can easily and quicly connect [SHT40 (temperature/humidity)](https://www.laskakit.cz/laskakit-sht40-senzor-teploty-a-vlhkosti-vzduchu/) and [SCD41 (temperature/humidity/CO2)](https://www.laskakit.cz/laskakit-scd41-senzor-co2--teploty-a-vlhkosti-vzduchu/). The power supply (3.3V) on uŠup connector is controlled by GPIO3 (high - power enabled).
 
 The Meteo Mini includes voltage divider what is used for measuring of battery voltage. The battery voltage is conencted through voltage divider (R6=1M; R7=1.3M) to IO0 of ESP32-3.</br>
-The connector on the bottom side is used for programming of ESP32-C3.
+The connector on the bottom side is used for programming of ESP32-C3 (for older version).
 
-The power consumption of Meteo Mini is only 8 uA, what is 4x less than the previous version with ESP8266.
+The power consumption of Meteo Mini is only 8 uA (for older than v3.5) or 11 uA for newer version with built-in programmer, what is 4x less than the previous version with ESP8266.
 
 ![LaskaKit Meteo Mini with ESP32-C3 pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_ESP32-C3_pin.jpg)
+
+![LaskaKit Meteo Mini with ESP32-C3 v3.5 and newer pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini-C3_v3.5_pinout.JPG)
 
 ## Programming
 
 Install the [ESP8266 package](https://github.com/espressif/arduino-esp32) in Arduino IDE.
 Then just use our [programmer with CH340C](https://www.laskakit.cz/laskakit-ch340-programmer-usb-c--microusb--uart/). Just plug in the programmer to Meteo Mini and switch the voltage level on programmer to 3.3V. 
+For MeteoMini v3.5 and newer, the board includes programmer, no needed to buy external one. The MeteoMini is still low power device also with built-in programmer. 
 
 ## Power supply 
 
