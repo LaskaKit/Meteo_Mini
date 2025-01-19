@@ -5,8 +5,8 @@
 *  Connect to this AP through smart phone or laptop. Also, you have to fill 
 *  the TMEP.CZ(.EU) sensor address where you would like to send the data and deep-sleep time.
 *
-*  The FW will search the addresses of following sensors: SHT40, BME280 (0x77), SCD41, DS18B20
-*  or you may force the sensor type and then the auto-search is disabled. 
+*  The FW will search the addresses of following sensors: SHT40 (0x44), SHT40 (0x45), BME280 (0x76), BME280 (0x77), SCD41, DS18B20
+*  OR you may force the sensor type and then the auto-search is disabled. 
 *
 *  Based on the searched sensor, the GET URL is filled as
 *  SHT40: temperature + humidity + battery voltage; expected TMEP GUIDs are: temp, humV, voltage
@@ -16,11 +16,11 @@
 *  Connect only ONE sensor at the same time !!!
 *
 *  Libraries: 
-*  https://github.com/Sensirion/arduino-i2c-sht4x
-*  https://github.com/adafruit/Adafruit_BME280_Library
-*  https://github.com/Sensirion/arduino-i2c-scd4x
-*  https://github.com/tzapu/WiFiManager
-*  https://github.com/milesburton/Arduino-Temperature-Control-Library
+*  https://github.com/Sensirion/arduino-i2c-sht4x (tested 1.1.2)
+*  https://github.com/adafruit/Adafruit_BME280_Library (tested 2.2.4)
+*  https://github.com/Sensirion/arduino-i2c-scd4x (tested v0.4.0)
+*  https://github.com/tzapu/WiFiManager (tested 2.0.17)
+*  https://github.com/milesburton/Arduino-Temperature-Control-Library (tested 4.0.1)
 *  ESP library 2.0.17 https://github.com/espressif/arduino-esp32
 *
 *  Hardware:
@@ -35,7 +35,7 @@
 */
 
 #include <Arduino.h>
-#include <SensirionI2CSht4x.h>
+#include <SensirionI2cSht4x.h>
 #include <Adafruit_BME280.h>
 #include <SensirionI2CScd4x.h>
 #include <Wire.h>
@@ -48,7 +48,7 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 
-#define version 0.1
+#define version 0.2
 
 // Data wire is connected to GPIO 10
 #define ONE_WIRE_BUS 10
@@ -68,19 +68,13 @@ WiFiManager wm;
 // Custom parameters
 char serverAddress[40] = "XXXYYYZZZ.tmep.cz";
 int sleepTime = 15; // Default sleep time in minutes
-int sensorType = 99; // Default sensor type (0: SHT40, 1: BME280, 2: SCD41, 3: DS18B20)
-//int heaterEn = 0; // Default heater setting (0: OFF, 1: ON)
-//int heaterOnTime = 1; // Default heater setting for ON (in sec)
-//int heaterOffTime = 2; // Default heater setting for OFF (in sec)
+int sensorType = 99; // Default sensor type (0: SHT40 (0x44), 1: SHT (0x45), 2: BME280 (0x76), 3: BME280 (0x77), 4: SCD41, 5: DS18B20)
 
 WiFiManagerParameter custom_serverAddress("server", "Server Address (max 40 chars)", serverAddress, 40);
 WiFiManagerParameter custom_sleepTime("sleepTime", "Sleep Time (max 200 minutes)", String(sleepTime).c_str(), 6);
-WiFiManagerParameter custom_sensorType("sensorType", "Sensor auto search (99: auto, 0: SHT40, 1: BME280, 2: SCD41, 3: DS18B20)", String(sensorType).c_str(), 2);
-//WiFiManagerParameter custom_heaterEn("heaterEn", "SHT40 Heater setting (0: OFF, 1:ON)", String(heaterEn).c_str(), 1);
-//WiFiManagerParameter custom_heaterOnTime("heaterOnTime", "Heater ON time (max 9 sec)", String(heaterOnTime).c_str(), 1);
-//WiFiManagerParameter custom_heaterOffTime("heaterOffTime", "Heater OFF time (max 9 sec)", String(heaterOffTime).c_str(), 1);
+WiFiManagerParameter custom_sensorType("sensorType", "Sensor auto search (99: auto, 0: SHT40 (0x44), 1: SHT40 (0x45), 2: BME280 (0x76), 3: BME280 (0x77), 4: SCD41, 5: DS18B20)", String(sensorType).c_str(), 2);
 
-SensirionI2CSht4x sht4x;
+SensirionI2cSht4x sht4x;
 Adafruit_BME280 bme;
 SensirionI2CScd4x scd4x;
 
@@ -98,16 +92,10 @@ void saveConfigCallback() {
   strcpy(serverAddress, custom_serverAddress.getValue());
   sleepTime = atoi(custom_sleepTime.getValue());
   sensorType = atoi(custom_sensorType.getValue());
-  //heaterEn = atoi(custom_heaterEn.getValue());
-  //heaterOnTime = atoi(custom_heaterOnTime.getValue());
-  //heaterOffTime = atoi(custom_heaterOffTime.getValue());
 
   EEPROM.put(0, serverAddress);
   EEPROM.put(40, sleepTime);
   EEPROM.put(50, sensorType);
-  //EEPROM.put(41, heaterEn);
-  //EEPROM.put(42, heaterOnTime);
-  //EEPROM.put(43, heaterOffTime);
   EEPROM.commit();
 }
 
@@ -125,7 +113,7 @@ void setup()
   Serial.println("-------------------");
   Serial.println("Laskakit Meteo Mini");
   Serial.println("TMEP and WiFi manager");
-  Serial.println("supporting SHT40 or BME280 or SCD41 or DS18B20");
+  Serial.println("supporting SHT40 (0x44, 0x45) or BME280 (0x76, 0x77) or SCD41 or DS18B20");
   Serial.println("depends on connected sensor (only ONE sensor)");
   Serial.print("version: "); Serial.println(version);
   Serial.println("-------------------");
@@ -134,24 +122,15 @@ void setup()
   EEPROM.get(0, serverAddress);
   EEPROM.get(40, sleepTime);
   EEPROM.get(50, sensorType);
-  //EEPROM.get(41, heaterEn);
-  //EEPROM.get(42, heaterOnTime);
-  //EEPROM.get(43, heaterOffTime);
 
   Serial.println("Stored Server Address: " + String(serverAddress));
   Serial.println("Stored Sleep Time: " + String(sleepTime));
   Serial.println("Auto Search Setting: " + String(sensorType));
-  //Serial.println("Stored Heater Setting: " + String(heaterEn));
-  //Serial.println("Stored Heater ON time: " + String(heaterOnTime));
-  //Serial.println("Stored Heater OFF time: " + String(heaterOffTime));
 
   // Set custom parameters
   wm.addParameter(&custom_serverAddress);
   wm.addParameter(&custom_sleepTime);
   wm.addParameter(&custom_sensorType);
-  //wm.addParameter(&custom_heaterEn);
-  //wm.addParameter(&custom_heaterOnTime);
-  //wm.addParameter(&custom_heaterOffTime);
 
   // Set save config callback
   wm.setSaveConfigCallback(saveConfigCallback);
@@ -177,16 +156,16 @@ void setup()
   uint16_t error;
   char errorMessage[256];
 
-  /* SHT40 */
+  /* SHT40 - 0x44 */
   if((sensorType == 0) || (sensorType == 99))
   {
-    sht4x.begin(Wire);
+    sht4x.begin(Wire, 0x44); 
 
     uint32_t serialNumber;
     error = sht4x.serialNumber(serialNumber);
     if (error) 
     {
-      Serial.println("Could not find a valid SHT40 sensor, check wiring!");
+      Serial.println("Could not find a valid SHT40 sensor (0x44), check wiring!");
     } 
     else 
     {
@@ -195,17 +174,35 @@ void setup()
     }
   }
 
-  /* BME280 */
+  /* SHT40 - 0x45 */
   if((sensorType == 1) || (sensorType == 99))
   {
-    if (!bme.begin(0x77))
+    sht4x.begin(Wire, 0x45); 
+
+    uint32_t serialNumber;
+    error = sht4x.serialNumber(serialNumber);
+    if (error) 
     {
-      Serial.println("Could not find a valid BME280 sensor, check wiring!");
+      Serial.println("Could not find a valid SHT40 sensor (0x45), check wiring!");
+    } 
+    else 
+    {
+      Serial.println("SHT40 found");
+      sensorType = 1;
+    }
+  }
+
+  /* BME280 - 0x76 */
+  if((sensorType == 2) || (sensorType == 99))
+  {
+    if (!bme.begin(0x76))
+    {
+      Serial.println("Could not find a valid BME280 sensor (0x76), check wiring!");
     }
     else
     {
       Serial.println("BME280 found");
-      sensorType = 1;
+      sensorType = 2;
 
       // bme setting
       bme.setSampling(Adafruit_BME280::MODE_FORCED, // Force reading after delayTime
@@ -216,10 +213,30 @@ void setup()
                 );
     } 
   }
+  /* BME280 - 0x77 */
+  if((sensorType == 3) || (sensorType == 99))
+  {
+    if (!bme.begin(0x77))
+    {
+      Serial.println("Could not find a valid BME280 sensor (0x77), check wiring!");
+    }
+    else
+    {
+      Serial.println("BME280 found");
+      sensorType = 3;
 
+      // bme setting
+      bme.setSampling(Adafruit_BME280::MODE_FORCED, // Force reading after delayTime
+                Adafruit_BME280::SAMPLING_X1, // Temperature sampling set to 1
+                Adafruit_BME280::SAMPLING_X1, // Pressure sampling set to 1
+                Adafruit_BME280::SAMPLING_X1, // Humidity sampling set to 1
+                Adafruit_BME280::FILTER_OFF   // Filter off - immediate 100% step response
+                );
+    } 
+  }
   
   /* SCD41 */
-  if((sensorType == 2) || (sensorType == 99))
+  if((sensorType == 4) || (sensorType == 99))
   {
     scd4x.begin(Wire);
 
@@ -231,13 +248,13 @@ void setup()
     else
     {
       Serial.println("SCD41 found");
-      sensorType = 2;
+      sensorType = 4;
     }
   }
 
 
   /* DS18B20 */
-  if((sensorType == 3) || (sensorType == 99))
+  if((sensorType == 5) || (sensorType == 99))
   {
     // Check if any device is present on the OneWire bus
     if (!oneWire.search(sensorAddress)) 
@@ -248,7 +265,7 @@ void setup()
     else 
     {
       Serial.println("DS18B20 found");
-      sensorType = 3;
+      sensorType = 5;
     }
   }
 
@@ -260,27 +277,18 @@ void loop()
   char errorMessage[256];
 
   float temperature = 0;
-  float humidity;
-  float pressure;
-  uint16_t co2;
-  float battery_voltage;
+  float humidity = 0;
+  float pressure = 0;
+  uint16_t co2 = 0;
+  float battery_voltage = 0;
 
   battery_voltage = (analogReadMilliVolts(ADC_IN) * DIVIDER_RATIO / 1000);
   Serial.print("ADC in mV: "); Serial.println(analogReadMilliVolts(ADC_IN));
 
-  if (sensorType == 0) // SHT40
+  delay(100);
+
+  if ((sensorType == 0) || (sensorType == 1)) // SHT40 0x44 or 0x45
   {
-    /*if(heaterEn == 1)
-    {
-      Serial.println("SHT40: Turning heater ON");
-      sht4x.heaterOn();
-      // Wait, heaterONtime
-      delay(heaterOnTime);
-      // Turn heater off
-      Serial.println("SHT40: Turning heater OFF");
-      sht4x.heaterOff();
-      delay(heaterOffTime);
-    }*/
     error = sht4x.measureHighPrecision(temperature, humidity);
     if (error) 
     {
@@ -290,13 +298,13 @@ void loop()
       return;
     }
   } 
-  else if (sensorType == 1) // BME280
+  else if ((sensorType == 2) || (sensorType == 3)) // BME280 0x76 or 0x77
   {
     temperature = bme.readTemperature();
     humidity = bme.readHumidity();
     pressure = bme.readPressure() / 100.0F;
   } 
-  else if (sensorType == 2) // SCD41
+  else if (sensorType == 4) // SCD41
   {
     delay(3000);
     error = scd4x.readMeasurement(co2, temperature, humidity);
@@ -308,7 +316,7 @@ void loop()
       return;
     }
   }
-  else if(sensorType == 3) // DS18B20
+  else if(sensorType == 5) // DS18B20
   {
     // Request temperature readings
     DS18B20.requestTemperatures();
@@ -320,19 +328,19 @@ void loop()
   Serial.print("Temperature: ");
   Serial.print(temperature);
 
-  if ((sensorType == 0) || (sensorType == 1) || (sensorType == 2))
+  if ((sensorType == 0) || (sensorType == 1) || (sensorType == 2) || (sensorType == 3) || (sensorType == 4))
   {
-    Serial.print("\tHumidity: ");
+    Serial.print("\nHumidity: ");
     Serial.println(humidity);
   }
-  if (sensorType == 1) 
+  if ((sensorType == 2) || (sensorType == 3))
   {
-    Serial.print("\tPressure: ");
+    Serial.print("\nPressure: ");
     Serial.println(pressure);
   } 
-  if (sensorType == 2) 
+  if (sensorType == 4) 
   {
-    Serial.print("\tCO2: ");
+    Serial.print("\nCO2: ");
     Serial.println(co2);
   } 
 
@@ -342,15 +350,15 @@ void loop()
     /* Send to TMEP */
     String url = "http://" + String(serverAddress) + "/?temp=" + String(temperature);
 
-    if ((sensorType == 0) || (sensorType == 1) || (sensorType == 2))
+    if ((sensorType == 0) || (sensorType == 1) || (sensorType == 2) || (sensorType == 3) || (sensorType == 4))
     {
       url += "&humV=" + String(humidity);
     } 
-    if (sensorType == 1) 
+    if ((sensorType == 2) || (sensorType == 3))
     {
       url += "&pressV=" + String(pressure);
     } 
-    if (sensorType == 2) 
+    if (sensorType == 4) 
     {
       url += "&CO2=" + String(co2);
     }
@@ -374,7 +382,9 @@ void loop()
     Serial.println("WiFi not connected");
   }
 
-  Serial.println("Meteo Mini is going to sleep...");
+  Serial.print("Meteo Mini is going to sleep for "); 
+  Serial.print(sleepTime); 
+  Serial.println(" minutes");
   
   digitalWrite(PWR_PIN, LOW); // Turn power OFF uSUP connector
   Serial.flush();
