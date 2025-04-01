@@ -1,4 +1,10 @@
-### Version 3.6
+### Version 4.0
+- Made it smaller
+- Redo power line, LDO chnaged to RT9080
+- Wemos pins deleted
+- + Neopixel LED
+- + µŠup SPI connector
+#### Version 3.6
 - přidán kondenzátor C8 na vstup spínače AP2191
 #### Version 3.5
 * nevypíná se spínaný stabilizátor pokud není na výstup připojena zátěž a deska v deepsleepu bere cca 200uA.
