@@ -2,8 +2,9 @@
 - Made it smaller
 - Redo power line, LDO chnaged to RT9080
 - Wemos pins deleted
-- + Neopixel LED
-- + µŠup SPI connector
+- added Neopixel LED
+- added µŠup SPI connector+
+- added 2x µŠup IO connectors (one with optional pull-up for DS18B20)
 #### Version 3.6
 - přidán kondenzátor C8 na vstup spínače AP2191
 #### Version 3.5
