@@ -42,6 +42,7 @@
 *.user
 *.sln.docstates
 *.docx
+*.xlsx
 
 # Build results
 [Dd]ebug/
