@@ -1,4 +1,7 @@
-### Version 4.0
+### Version 4.1
+- Added 47uF capacitor for ESP
+- Added pull-up on IO8
+#### Version 4.0
 - Made it smaller
 - Redo power line, LDO chnaged to RT9080
 - Wemos pins deleted
