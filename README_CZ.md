@@ -25,7 +25,7 @@ Obsahuje totiž vše, co budeš pro začátek potřebovat — a velmi snadno ji 
 | **Odběr proudu v deep-sleep módu** | 23 μA |
 | **Konektor pro anténu (IPEX verze)** | [IPEX3](https://www.laskakit.cz/vyhledavani/?string=IPEX3&lb.f%5B%5D=category%3AP%C5%99enos%20a%20ukl%C3%A1d%C3%A1n%C3%AD%20dat&lb.f%5B%5D=category%3APropojovac%C3%AD%20kabely) |
 | **Napájení** | USB-C nebo Li-Ion akumulátor (1 článek) |
-| **Nabíjecí čip** | BQ24074RGTR s indikací nabíjení *(LED CHG/DONE)* |
+| **Nabíjecí čip** | BQ24074RGTR s indikací nabíjení *(LED CHG/POWER GOOD)* |
 | **USB převodník** | CH9102F |
 | **Stabilizátory napětí** | RT9080 (ESP), RT9080 (periferie, IO4 → HIGH pro zapnutí) |
 | **Rozměry** | 48,4 × 32,9 × 9 mm |
@@ -73,7 +73,7 @@ Napájení přes USB-C a solární panel je sloučeno přes ochranné diody do v
 Souběžné připojení obou zdrojů je tedy bezpečné.  
 Doporučený **solární panel je 6 V**, maximálně však lze bezpečně použít i **10V solární panely**.  
 Nabíjecí proud je **nastavitelný pomocí pájecích propojek CH_CURRENT** na hodnoty **0.5 A (výchozí)**, **1.0 A**, nebo **1.34 A** *(pokud jsou všechny tři propojky spojeny)*.  
-Stav nabíjení je indikován pomocí LED — **CHG** (nabíjení) a **DONE** (nabito).
+Stav nabíjení je indikován pomocí LED — **CHG** (nabíjení) a **POWER GOOD** (nabito).
 
 ---
 
