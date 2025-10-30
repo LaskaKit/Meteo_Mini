@@ -1,61 +1,130 @@
-# LaskaKit Meteo Mini s ESP32-C3. Výkonnější a úspornější. 
-Meteostanice je jeden z projektů, které bastlíři nejčastěji vyhledávají.</br>
-Když si blikáš LEDkou, je to sice pěkné, ale za chvíli tě to asi omrzí. Když si postavíš meteostanici, bude ti sloužit dlouho, vlastně čím délé, tím lépe, protože budeš mít dlouhodobé statistiky. A třeba díky vlastní meteostanici dokážeš zachytit výbuch sopky na druhé straně zeměkoule (díky čidlu tlaku, které zaznamená tlakovou vlnu).</br>
-Víme, že každý si nedokáže nebo nechce navrhnout vlastní hardware a tak přicházíme s naší vývojovou deskou určenou (nejen) pro meteostanice - [LaskaKit Meteo Mini](https://www.laskakit.cz/laskakit-meteo-mini).
+# LaskaKit Meteo Mini s ESP32-C3 — výkonnější a úspornější
 
-![LaskaKit Meteo Mini](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/1.jpg) ![LaskaKit Meteo Mini v3.5 a novější](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini-C3_v3.5_1.JPG)
+Meteostanice je jeden z projektů, které bastlíři nejčastěji vyhledávají.  
+Když si blikáš LEDkou, je to sice pěkné, ale za chvíli tě to asi omrzí.  
+Když si postavíš meteostanici, bude ti sloužit dlouho — vlastně čím déle, tím lépe, protože budeš mít dlouhodobé statistiky.  
+A třeba díky vlastní meteostanici dokážeš zachytit výbuch sopky na druhé straně zeměkoule (díky čidlu tlaku, které zaznamená tlakovou vlnu).
 
-Tato vývojová deska s ESP32-C3 (což je výrazná změna oproti starší verzi méně úsporné verzi s ESP12S-ESP8266) ti ulehčí tvůj projekt meteostanice. Obsahuje totiž vše, co budeš pro začátek potřebovat. A velmi snad jí rozšíříš o spoustu dalších modulů s čidly. 
+Víme, že každý si nedokáže nebo nechce navrhnout vlastní hardware, a tak přicházíme s naší vývojovou deskou určenou (nejen) pro meteostanice — [**LaskaKit Meteo Mini**](https://www.laskakit.cz/laskakit-meteo-mini).
 
-## Pinout desky
+![LaskaKit Meteo Mini](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/1.jpg)  
+![LaskaKit Meteo Mini v3.5 a novější](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini-C3_v3.5_1.JPG)
 
-Na přední straně desky najdeš Wi-Fi modul s ESP32-C3. Ten disponuje vyšším výkonem než starší verze desky s ESP8266 a také je mnohem úspornější - vlastní spotřeba pouhých 5 uA naproti tomu 20 uA, který má ESP8266.</br>
-Tento modul podporuje standard IEEE 802.11 b/g/n. Dále na desce najdeš dvě tlačítka pro nahrávání kódu - FLASH a RESET. Postup pro programování bude vysvětlen níže.
-Dále zde najdeš i pájecí most nazvaný CH_CURRENT - propájením tohoto mostu vybereš maximální nabíjecí proud do akumulátoru - 260mA a 400mA (výchozí).
-Celou desku můžeš vypnout díky vypínači na levé straně. Na pravé straně se pak nachází USB-C konektor (žádný microUSB :) ) určený pro nabíjení akumulátoru. Na spodní straně je konektor pro připojení Li-ion akumulátoru (Battery) a druhý konektor pro připojení solárního panelu (solar). </br>
-Na pravé straně ještě najdeš 1-wire sběrnici, kam můžeš zapájet teplotní čidlo DS18B20 (datový pin je připojen k GPIO10). Na levé straně desky se nachází μŠup - což je náš standardní typ konektoru, kompatibilní s SparkFun Qwiic a Adafruit STEMMA. </br>
-S tímto konektorem máme i vlastní moduly - [SHT40 (teplota/vlhkost)](https://www.laskakit.cz/laskakit-sht40-senzor-teploty-a-vlhkosti-vzduchu/) nebo [SCD41 (teplota/vlhkost/CO2)](https://www.laskakit.cz/laskakit-scd41-senzor-co2--teploty-a-vlhkosti-vzduchu/).</br> Napájení uŠup konektoru je řízeno skrze GPIO3 (high - 3.3V připojeno). Tím můžete docílit ještě nižší spotřeby celého zařízení.
+Tato vývojová deska s **ESP32-C3** (což je výrazná změna oproti starší méně úsporné verzi s ESP12S/ESP8266) ti ulehčí tvůj projekt meteostanice.  
+Obsahuje totiž vše, co budeš pro začátek potřebovat — a velmi snadno ji rozšíříš o další moduly s čidly.
 
-Regulátor na 3.3V se nachází přímo na desce Meteo Mini. </br>
-Pro měření akumulátoru můžeš využít odporový dělič napětí, jeho výstup je připojen na IO0. Hodnoty rezistorů jsou 1M a 1,3M. </br>
-K I2C sběrnici můžeš připojit i pull-up rezistory, jen dej pozor abys jich neměl na I2C sběrnici připojeno několik. Paralelním spojením rezistorů se snižuje jejich hodnota. Minimální hodnota pull-up rezistorů by měla být 2,2k.</br>
-Na spodní části pak najdete programovací konektor (u starších verzí).
+---
 
-Spotřeba Meteo Mini s ESP32-C3 je opravdu nízká. V případě napájení z akumulátoru, je spotřeba desky v deep-sleep mode pouze 8 uA (pro starší verze než 3.5) nebo 11 uA pro verze 3.5 a novější - tyto verze mají integrovaný programátor již na desce. Což je 4x méně než u předchozí verze. 
+## 🧩 Specifikace
 
-![LaskaKit Meteo Mini s ESP32-C3 pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_ESP32-C3_pin.jpg)
+| Parametr | Hodnota |
+|-----------|----------|
+| **Verze desky** | v4.1 |
+| **Mikrokontrolér** | ESP32-C3-MINI (Wi-Fi, BLE, RISC-V jádro) |
+| **Vstupní napětí USB** | 3.4–5.5 V |
+| **Vstupní napětí Solar** | 5–10 V *(doporučený 6 V solární panel)* |
+| **Odběr proudu v deep-sleep módu** | 23 μA |
+| **Konektor pro anténu (IPEX verze)** | [IPEX3](https://www.laskakit.cz/vyhledavani/?string=IPEX3&lb.f%5B%5D=category%3AP%C5%99enos%20a%20ukl%C3%A1d%C3%A1n%C3%AD%20dat&lb.f%5B%5D=category%3APropojovac%C3%AD%20kabely) |
+| **Napájení** | USB-C nebo Li-Ion akumulátor (1 článek) |
+| **Nabíjecí čip** | BQ24074RGTR s indikací nabíjení *(LED CHG/DONE)* |
+| **USB převodník** | CH9102F |
+| **Stabilizátory napětí** | RT9080 (ESP), RT9080 (periferie, IO4 → HIGH pro zapnutí) |
+| **Rozměry** | 48,4 × 32,9 × 9 mm |
+| **Hmotnost** | 8 g |
 
+---
+
+## ⚙️ Pinout desky
+
+Na přední straně desky najdeš Wi-Fi modul s ESP32-C3.  
+Ten disponuje vyšším výkonem než starší verze s ESP8266 a také je mnohem úspornější — vlastní spotřeba pouhých **23 μA** v deep-sleep módu.
+
+Tento modul podporuje standard **IEEE 802.11 b/g/n**.  
+Na desce jsou dvě tlačítka pro nahrávání kódu — **FLASH** a **RESET**.  
+Pájecí můstek **CH_CURRENT** umožňuje volit maximální nabíjecí proud do akumulátoru: **1,0 A nebo 1,34 A** dle osazení rezistoru (viz schéma).
+
+Desku lze vypnout pomocí vypínače na levé straně.  
+Na pravé straně se nachází **USB-C konektor** pro napájení a nabíjení akumulátoru.  
+Na spodní straně najdeš konektor pro **Li-Ion akumulátor (Battery)** a **solární panel (Solar)**.
+
+Na pravé straně je také **1-Wire sběrnice** pro čidlo **DS18B20** (GPIO10).  
+Na levé straně se nachází sada **µŠup konektorů** – to je náš vlastní standard kompatibilní se **SparkFun Qwiic** a **Adafruit STEMMA**.  
+Kromě klasického **I2C µŠup konektoru** je zde také **µŠup SPI** a **µŠup IO**.
+
+Napájení µŠup konektorů je řízeno přes **GPIO4 (HIGH = zapnuto)**, což umožňuje ještě nižší spotřebu.  
+Regulátor napětí 3.3V je integrován přímo na desce.  
+Pro měření napětí akumulátoru je k dispozici odporový dělič (1MΩ a 1,3MΩ) připojený na **IO0 (ADC vstup)**.
+
+![LaskaKit Meteo Mini s ESP32-C3 pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_ESP32-C3_pin.jpg)  
 ![LaskaKit Meteo Mini s ESP32-C3 v3.5 a novější pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini-C3_v3.5_pinout.JPG)
 
-## Programování
+---
 
-V Arduino IDE nainstalujte [podporu ESP32-C3](https://github.com/espressif/arduino-esp32).
+## 🔌 Připojení senzorů
 
-Pro naprogramování Meteo Mini stačí použít [náš programátor s CH340C](https://www.laskakit.cz/laskakit-ch340-programmer-usb-c--microusb--uart/). Jen jej zastrčíš do konektoru na MeteoMini, přepneš na programátoru napájení na 3.3V a připojíš USB-C nebo microUSB do konektoru počítače. Napíšeš kód a nahraješ. To platí pro verze starší než 3.5.
-Pro verze MeteoMini 3.5 a novější již není potřeba používat externí programátor - novější verze desky totiž mají už osazený programátor přímo na desce. A i tak je MeteoMini stále velmi úspornou a univerzální deskou. 
+| Rozhraní | Konektor | Signály |
+|-----------|-----------|---------|
+| **µŠup I2C** | JST-SH 4 pin | SDA: IO19, SCL: IO18 |
+| **µŠup SPI** | JST-SH 6 pin | CS: IO3, MOSI: IO7, SCK: IO6, MISO: IO2 |
+| **µŠup IO** | 2× JST-SH 3 pin | IO1, IO10 *(podpora DS18B20)* |
 
-## Připojení akumulátoru a solárního panelu
+---
 
-Solární panel a USB-C konektor jsou připojeny přes ochranné diody do vstupu nabíjecího obvodu TP4054.</br>
-Souběžné připojení microUSB konektoru a solárního panelu je tedy chráněno pomocí diod D1 a D2. </br>
-Tento obvod dokáže nabíjet akumulátor proudem až 400 mA (výchozí nastavení pomocí pájecího mostu CH_CURRENT) nebo 280 mA - zde je potřeba přeříznout cestu v pájecím mostu a propájet jeho druhou část.</br>
-Maximální vstupní napětí je 9V. Solární panel tedy volte s rezervou pro případ, kdy bude akumulátor plně nabitý a na solární panel bude svítit slunce. V takovém případě může napětí na výstupu solárního panelu dosáhnout vyššího napětí.</br>
-Doporučujeme tedy 6V solární panel. 
+## ⚡ Připojení akumulátoru a solárního panelu
 
-## Měření napětí na akumulátoru
-VCC (napětí akumulátoru) je přes odporový dělič přivedeno na vstup IO0 AD převodníku ESP32-C3. </br>
-Maximální vstupní napětí AD převodníku může být 3.3V.
+Napájení přes USB-C a solární panel je sloučeno přes ochranné diody do vstupu nabíjecího čipu **BQ24074**.  
+Souběžné připojení obou zdrojů je tedy bezpečné.  
+Doporučený **solární panel je 6 V**, maximálně však lze bezpečně použít i **10V solární panely**.  
+Nabíjecí proud je **nastavitelný pomocí pájecích propojek CH_CURRENT** na hodnoty **0.5 A (výchozí)**, **1.0 A**, nebo **1.34 A** *(pokud jsou všechny tři propojky spojeny)*.  
+Stav nabíjení je indikován pomocí LED — **CHG** (nabíjení) a **DONE** (nabito).
 
-## Vzorový kód
-Vytvořili jsme i vzorový kód. Ten najdeš na https://github.com/LaskaKit/Meteo_Mini/tree/main/SW/
+---
 
-K dispozici je osazená deska ve dvou verzích - PCB anténou nebo konektorem pro externí anténu, kterou můžeš zakoupit na laskakit.cz
-[https://www.laskakit.cz/laskakit-meteo-mini](https://www.laskakit.cz/laskakit-meteo-mini/)
+## 🔋 Měření napětí na akumulátoru
 
-K dispozici je i soubor pro tisk krabičky na 3D tiskárně...
+Napětí akumulátoru (**VCC**) je přes odporový dělič přivedeno na vstup **IO0** (ADC) mikrokontroléru ESP32-C3.  
+
+---
+
+## 💡 LED a senzory
+
+- **Adresovatelná RGB LED:** SK6812-EC20 na pinu IO9  
+- **Tlačítko:** IO5 → stisk = LOW  
+- **Teplotní čidlo:** NTC 10 kΩ (3435) – ochrana akumulátoru  
+
+---
+
+## 🧠 Programování
+
+V Arduino IDE nainstalujte [podporu ESP32-C3](https://github.com/espressif/arduino-esp32).  
+Pro verze **3.5 a novější** (včetně **v4.1**) již **není potřeba externí programátor** — CH9102F je integrován na desce.  
+U starších verzí lze použít [programátor s CH340C](https://www.laskakit.cz/laskakit-ch340-programmer-usb-c--microusb--uart/).
+
+---
+
+## 💾 Vzorový kód
+
+Vzorové kódy a knihovny jsou dostupné na:  
+👉 [https://github.com/LaskaKit/Meteo_Mini/tree/main/SW/](https://github.com/LaskaKit/Meteo_Mini/tree/main/SW/)
+
+---
+
+## 📦 K dispozici
+
+Deska je dostupná ve dvou variantách:  
+- s **integrovanou PCB anténou**  
+- nebo s **konektorem pro externí anténu (IPEX3)**  
+
+👉 [https://www.laskakit.cz/laskakit-meteo-mini/](https://www.laskakit.cz/laskakit-meteo-mini/)
+
+---
+
+## 🧱 Krabička a 3D tisk
+
+K dispozici je i model pro 3D tisk krabičky:
 
 ![LaskaKit Meteo Mini 3D case](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_3Dcase.jpg)
 
-... a to, co prodáváme, opravdu sami používáme (předchozí verze).
+A ano — **to, co prodáváme, sami používáme** (na fotce předchozí verze):
 
 ![LaskaKit Meteo Mini Weather Station](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_weatherstation.jpg)
