@@ -25,7 +25,7 @@ It includes everything you need to get started — and can be easily expanded wi
 | **Deep-sleep current consumption** | 23 μA |
 | **Antenna connector (IPEX version)** | [IPEX3](https://www.laskakit.cz/vyhledavani/?string=IPEX3&lb.f%5B%5D=category%3AP%C5%99enos%20a%20ukl%C3%A1d%C3%A1n%C3%AD%20dat&lb.f%5B%5D=category%3APropojovac%C3%AD%20kabely) |
 | **Power supply** | USB-C or single-cell Li-Ion battery |
-| **Charging IC** | BQ24074RGTR with charging indicators *(LED CHG/POWER GOOD)* |
+| **Charging IC** | BQ24074RGTR with charging indicators *(LED CHG/POWER GOOD)*.NTC allows battery charging only within the safe temperature range of 0 °C to 50 °C. |
 | **USB interface** | CH9102F |
 | **Voltage regulators** | RT9080 (ESP), RT9080 (peripherals, IO4 → HIGH to enable) |
 | **Dimensions** | 48.4 × 32.9 × 9 mm |
