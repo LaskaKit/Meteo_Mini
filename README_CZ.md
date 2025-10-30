@@ -7,8 +7,7 @@ A třeba díky vlastní meteostanici dokážeš zachytit výbuch sopky na druhé
 
 Víme, že každý si nedokáže nebo nechce navrhnout vlastní hardware, a tak přicházíme s naší vývojovou deskou určenou (nejen) pro meteostanice — [**LaskaKit Meteo Mini**](https://www.laskakit.cz/laskakit-meteo-mini).
 
-![LaskaKit Meteo Mini](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/1.jpg)  
-![LaskaKit Meteo Mini v3.5 a novější](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini-C3_v3.5_1.JPG)
+![LaskaKit Meteo Mini v4.1 a novější](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/LaskaKit-meteo-mini_v4-2.jpg)
 
 Tato vývojová deska s **ESP32-C3** (což je výrazná změna oproti starší méně úsporné verzi s ESP12S/ESP8266) ti ulehčí tvůj projekt meteostanice.  
 Obsahuje totiž vše, co budeš pro začátek potřebovat — a velmi snadno ji rozšíříš o další moduly s čidly.
@@ -54,8 +53,7 @@ Napájení µŠup konektorů je řízeno přes **GPIO4 (HIGH = zapnuto)**, což 
 Regulátor napětí 3.3V je integrován přímo na desce.  
 Pro měření napětí akumulátoru je k dispozici odporový dělič (1MΩ a 1,3MΩ) připojený na **IO0 (ADC vstup)**.
 
-![LaskaKit Meteo Mini s ESP32-C3 pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_ESP32-C3_pin.jpg)  
-![LaskaKit Meteo Mini s ESP32-C3 v3.5 a novější pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini-C3_v3.5_pinout.JPG)
+![LaskaKit Meteo Mini s ESP32-C3 pinout](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/LaskaKit-meteo-mini_v4-1.jpg)  
 
 ---
 
@@ -122,11 +120,11 @@ Deska je dostupná ve dvou variantách:
 
 K dispozici je i model pro 3D tisk krabičky:
 
-![LaskaKit Meteo Mini 3D case](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_3Dcase.jpg)
+![LaskaKit Meteo Mini 3D case](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/laskakit-meteo-mini-meteostanice_v3-6.jpg)
 
 A ano — **to, co prodáváme, sami používáme** (na fotce předchozí verze):
 
-![LaskaKit Meteo Mini Weather Station](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_weatherstation.jpg)
+![LaskaKit Meteo Mini Weather Station](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/LaskaKit-laskakit-meteo-mini-meteostanice-v3-main-1.jpg)
 
 ---
 
