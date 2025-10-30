@@ -40,7 +40,6 @@ Na přední straně desky najdeš Wi-Fi modul s ESP32-C3.
 Ten disponuje vyšším výkonem než starší verze s ESP8266 a také je mnohem úspornější — vlastní spotřeba pouhých **23 μA** v deep-sleep módu.
 
 Tento modul podporuje standard **IEEE 802.11 b/g/n**.  
-Na desce jsou dvě tlačítka pro nahrávání kódu — **FLASH** a **RESET**.  
 Pájecí můstek **CH_CURRENT** umožňuje volit maximální nabíjecí proud do akumulátoru: **1,0 A nebo 1,34 A** dle osazení rezistoru (viz schéma).
 
 Desku lze vypnout pomocí vypínače na levé straně.  
@@ -117,7 +116,7 @@ Deska je dostupná ve dvou variantách:
 
 👉 [https://www.laskakit.cz/laskakit-meteo-mini/](https://www.laskakit.cz/laskakit-meteo-mini/)
 
----
+
 
 ## 🧱 Krabička a 3D tisk
 
@@ -128,3 +127,13 @@ K dispozici je i model pro 3D tisk krabičky:
 A ano — **to, co prodáváme, sami používáme** (na fotce předchozí verze):
 
 ![LaskaKit Meteo Mini Weather Station](https://github.com/LaskaKit/Meteo_Mini/blob/main/img/MeteoMini_weatherstation.jpg)
+
+---
+
+## 🕹️ Starší verze desky
+
+### Meteo Mini v3.5
+- **IO3** slouží k zapnutí periferií (napájení µŠup konektorů).  
+- **Maximální vstupní napětí solárního panelu:** 6 V.  
+- Nabíjecí čip **TP4054** – nižší účinnost a bez podpory přímého napájení z panelu.  
+- Bez SPi a IO µŠup konektoru
