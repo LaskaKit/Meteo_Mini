@@ -25,7 +25,7 @@ It includes everything you need to get started — and can be easily expanded wi
 | **Deep-sleep current consumption** | 23 μA |
 | **Antenna connector (IPEX version)** | [IPEX3](https://www.laskakit.cz/vyhledavani/?string=IPEX3&lb.f%5B%5D=category%3AP%C5%99enos%20a%20ukl%C3%A1d%C3%A1n%C3%AD%20dat&lb.f%5B%5D=category%3APropojovac%C3%AD%20kabely) |
 | **Power supply** | USB-C or single-cell Li-Ion battery |
-| **Charging IC** | BQ24074RGTR with charging indicators *(LED CHG/DONE)* |
+| **Charging IC** | BQ24074RGTR with charging indicators *(LED CHG/POWER GOOD)* |
 | **USB interface** | CH9102F |
 | **Voltage regulators** | RT9080 (ESP), RT9080 (peripherals, IO4 → HIGH to enable) |
 | **Dimensions** | 48.4 × 32.9 × 9 mm |
@@ -73,7 +73,7 @@ Power from USB-C and the solar panel is combined through protection diodes into 
 Connecting both power sources simultaneously is safe.  
 The **recommended solar panel** is 6 V, but **10 V panels can also be safely used**.  
 Charging current is **configurable using the CH_CURRENT solder jumpers**: **0.5 A (default)**, **1.0 A**, or **1.34 A** *(when all three jumpers are bridged)*.  
-Charging status is indicated by LEDs — **CHG** (charging) and **DONE** (fully charged).
+Charging status is indicated by LEDs — **CHG** (charging) and **POWER GOOD** (fully charged).
 
 ---
 
