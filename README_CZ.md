@@ -25,7 +25,7 @@ Obsahuje totiž vše, co budeš pro začátek potřebovat — a velmi snadno ji 
 | **Odběr proudu v deep-sleep módu** | 23 μA |
 | **Konektor pro anténu (IPEX verze)** | [IPEX3](https://www.laskakit.cz/vyhledavani/?string=IPEX3&lb.f%5B%5D=category%3AP%C5%99enos%20a%20ukl%C3%A1d%C3%A1n%C3%AD%20dat&lb.f%5B%5D=category%3APropojovac%C3%AD%20kabely) |
 | **Napájení** | USB-C nebo Li-Ion akumulátor (1 článek) |
-| **Nabíjecí čip** | BQ24074RGTR s indikací nabíjení *(LED CHG/POWER GOOD)* |
+| **Nabíjecí čip** | BQ24074RGTR s indikací nabíjení *(LED CHG/POWER GOOD)*. NTC zajišťuje, že se baterie nabíjí pouze v bezpečném teplotním rozmezí od 0 °C do 50 °C.|
 | **USB převodník** | CH9102F |
 | **Stabilizátory napětí** | RT9080 (ESP), RT9080 (periferie, IO4 → HIGH pro zapnutí) |
 | **Rozměry** | 48,4 × 32,9 × 9 mm |
