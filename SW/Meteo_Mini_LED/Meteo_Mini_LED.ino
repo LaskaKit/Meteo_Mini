@@ -1,10 +1,17 @@
 /*
-* This example code is used for LaskaKit LaskaKit Meteo Mini v4.0 board  https://www.laskakit.cz/laskakit-meteo-mini/
-* LaskaKit LaskaKit Meteo Mini just changing LED color 
-* 
-* Made by (c) laskakit.cz 2025
-* 
-*/
+ * Example code for installed LED and Meteo Mini board with ESP32-C3/C6
+ * LaskaKit LaskaKit Meteo Mini just changing LED color 
+ * 
+ * Board:   LaskaKit Meteo Mini C3      https://www.laskakit.cz/laskakit-meteo-mini/
+ *          LaskaKit Meteo Mini C6      
+ * 
+ * 
+ * Library:
+ * https://github.com/adafruit/Adafruit_NeoPixel
+ *
+ * 
+ * Made by laskakit.cz (c) 2026
+ */
 
 #include <Adafruit_NeoPixel.h>
 

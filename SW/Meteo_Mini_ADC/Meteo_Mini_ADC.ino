@@ -1,12 +1,12 @@
 /*
-* This example code is used for LaskaKit Meteo Mini board 
-*
-* Meteo Mini ESP board reads voltage on Battery and Solar panel 
+* LaskaKit Meteo Mini board reads voltage on Battery
 * and sends every 2 seconds through UART
 * 
-*
-* Made by (c) laskakit.cz 2022
+* Board:   LaskaKit Meteo Mini C3      https://www.laskakit.cz/laskakit-meteo-mini/
+*          LaskaKit Meteo Mini C6      
 * 
+* 
+* Made by laskakit.cz (c) 2026
 */
 
 #include <SPI.h>

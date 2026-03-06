@@ -1,20 +1,18 @@
 /*
- * Example code for SCD41 (CO2 sensor) and MeteoMini board with ESP32-C3
+ * Example code for SCD41 (CO2 sensor) and MeteoMini board with ESP32-C3/C6
  * Values are sent to Serial Monitor
  * 
- * Boards:
- * https://www.laskakit.cz/laskakit-meteo-mini/
- * https://www.laskakit.cz/laskakit-scd41-senzor-co2--teploty-a-vlhkosti-vzduchu/
+ * Board:   LaskaKit Meteo Mini C3      https://www.laskakit.cz/laskakit-meteo-mini/
+ *          LaskaKit Meteo Mini C6      
+ * Sensor:  LaskaKit SCD41 CO2 Sensor   https://www.laskakit.cz/laskakit-scd41-senzor-co2--teploty-a-vlhkosti-vzduchu/
  * 
  * 
  * Library:
  * https://github.com/sparkfun/SparkFun_SCD4x_Arduino_Library
  *
- * GPIO19 - SDA
- * GPIO18 - SCL
  * 
- * Made by laskakit.cz (c) 2023
-  */
+ * Made by laskakit.cz (c) 2026
+ */
   
 #include <Wire.h>
 #include "SparkFun_SCD4x_Arduino_Library.h"

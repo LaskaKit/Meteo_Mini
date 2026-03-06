@@ -1,19 +1,19 @@
 /*
-* This example code for current and voltage from INA219 module
-* is used with Meteo Mini v3.5.
-* Meteo Mini v3.5 reads current and voltage from INA219 sensor 
-* and send to Serial Monitor (115200)
-*
-* SDA - GPIO19
-* SCL - GPIO18
-*
-* Made by (c) laskakit.cz 2024
-* https://www.laskakit.cz/laskakit-meteo-mini/?variantId=10473
-* https://www.laskakit.cz/laskakit-ina219-proudovy-senzor/
-*
-* Libraries
-* https://github.com/adafruit/Adafruit_INA219 - modified example is used
-*/
+ * Example code for current and voltage from INA219 module and MeteoMini board with ESP32-C3/C6
+ * Values are sent to Serial Monitor
+ * 
+ * Board:   LaskaKit Meteo Mini C3          https://www.laskakit.cz/laskakit-meteo-mini/
+ *          LaskaKit Meteo Mini C6      
+ * Sensor:  LaskaKit INA219 current sensor  https://www.laskakit.cz/laskakit-ina219-proudovy-senzor/
+ * 
+ * 
+ * Library:
+ * https://github.com/adafruit/Adafruit_INA219 - modified example is used
+ *
+ * 
+ * Made by laskakit.cz (c) 2026
+ */
+
 
 #include <Wire.h>
 #include <Adafruit_INA219.h>

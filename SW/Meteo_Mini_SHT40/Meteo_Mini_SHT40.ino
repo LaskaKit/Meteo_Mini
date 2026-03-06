@@ -1,20 +1,20 @@
 /*
-* Vzorovy kod od laskakit.cz pro SHT40 s vyvojovym kitem Meteo Mini s ESP32-C3
-* Kod posle pres seriovy port (UART)
-* hodnoty teploty a vlhkosti z SHT40
-* kazdou sekundu
-* Boards:
-* https://www.laskakit.cz/laskakit-meteo-mini/
-* https://www.laskakit.cz/laskakit-sht40-senzor-teploty-a-vlhkosti-vzduchu/
-* SDA - GPIO19
-* SCL - GPIO18
+* Example code for SHT40 and MeteoMini board with ESP32-C3/C6
+* Values are sent to Serial Monitor
 *
-* Vytvoreno (c) laskakit.cz 2023
+* Board:   LaskaKit Meteo Mini C3                               https://www.laskakit.cz/laskakit-meteo-mini/
+*          LaskaKit Meteo Mini C6                               
+* Sensor:  LaskaKit SHT40 Air temperature and humidity sensor   https://www.laskakit.cz/laskakit-sht40-senzor-teploty-a-vlhkosti-vzduchu/
+*          LaskaKit SHT45 Air temperature and humidity sensor   https://www.laskakit.cz/en/laskakit-sht45-senzor-teploty-a-vlhkosti-vzduchu/
 *
-* Potrebne knihovny:
-* https://github.com/adafruit/Adafruit_SHT4X
+* Library: 
+*           https://github.com/adafruit/Adafruit_SHT4X
+*
+* 
+* Made by laskakit.cz (c) 2026
 */
- 
+
+
 #include <Wire.h>
 #include "Adafruit_SHT4x.h"
 

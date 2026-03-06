@@ -1,14 +1,15 @@
 /*
-* This example code is used for LaskaKit ESP32-S3-DevKit board  https://www.laskakit.cz/laskakit-esp32-s3-devkit/
-*
-* ESP32-S3-DevKit board reads voltage of Battery  
+* LaskaKit Meteo Mini board reads voltage on Battery
+* Meteo Mini board reads voltage on Battery  
 * and sends every 0.5 seconds through UART and LaskaKit 0.91" SSD1306 (SSD1315) OLED i2c display
+* 
+* Board:   LaskaKit Meteo Mini C3                   https://www.laskakit.cz/laskakit-meteo-mini/
+*          LaskaKit Meteo Mini C6                   
+* Display: LaskaKit OLED displej 128x32 0.91" I²C   https://www.laskakit.cz/laskakit-oled-displej-128x32-0-91--i--c/
 *
-* Made by (c) laskakit.cz 2026
-*
-* Board: ESP32-S3 Dev Module
+* 
+* Made by laskakit.cz (c) 2026
 */
-
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>     // https://github.com/adafruit/Adafruit-GFX-Library
