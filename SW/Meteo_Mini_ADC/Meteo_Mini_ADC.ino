@@ -12,7 +12,20 @@
 #include <SPI.h>
 #include <Wire.h>
 
-#define ADCpin 0
+#define Meteo_Mini_C3
+//#define Meteo_Mini_C6
+
+#if defined(Meteo_Mini_C3)
+
+  #define ADCpin  0
+
+#elif defined(Meteo_Mini_C6)
+
+  #define ADCpin  3
+
+#endif
+
+
 #define DeviderRatio 1.7693877551  // Voltage devider ratio on ADC pin 1MOhm + 1.3MOhm
 
 void setup() {

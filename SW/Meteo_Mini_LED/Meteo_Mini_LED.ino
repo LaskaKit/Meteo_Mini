@@ -7,15 +7,29 @@
 */
 
 #include <Adafruit_NeoPixel.h>
-#define PIN_ON 4
-#define PIN_LED 9
 
-Adafruit_NeoPixel pixels = Adafruit_NeoPixel(1, PIN_LED, NEO_GRB + NEO_KHZ800);
+//#define Meteo_Mini_C3
+#define Meteo_Mini_C6
+
+#if defined(Meteo_Mini_C3)
+
+  #define Power 4
+  #define LED   9
+
+#elif defined(Meteo_Mini_C6)
+
+  #define Power 1
+  #define LED   9
+
+#endif
+
+
+Adafruit_NeoPixel pixels = Adafruit_NeoPixel(1, LED, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   Serial.begin(115200);
-  pinMode(PIN_ON, OUTPUT);      // Set EN pin for second stabilisator as output
-  digitalWrite(PIN_ON, HIGH);   // Turn on the second stabilisator
+  pinMode(Power, OUTPUT);      // Set EN pin for second stabilisator as output
+  digitalWrite(Power, HIGH);   // Turn on the second stabilisator
 
   pixels.begin();
   pixels.setBrightness(10);

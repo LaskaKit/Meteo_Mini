@@ -17,9 +17,23 @@
  
 #include <Wire.h>
 #include "Adafruit_SHT4x.h"
-#define SDA 19
-#define SCL 18
-#define PIN_ON 3
+
+//#define Meteo_Mini_C3
+#define Meteo_Mini_C6
+
+#if defined(Meteo_Mini_C3)
+
+  #define Power   4
+  #define SCL     18
+  #define SDA     19 
+
+#elif defined(Meteo_Mini_C6)
+
+  #define Power   1
+  #define SCL     5
+  #define SDA     4 
+
+#endif
 
 Adafruit_SHT4x sht4 = Adafruit_SHT4x();
  
@@ -31,8 +45,8 @@ void setup() {
   }
 
   // for version over 3.5 need to turn uSUP ON
-  pinMode(PIN_ON, OUTPUT);      // Set EN pin for uSUP stabilisator as output
-  digitalWrite(PIN_ON, HIGH);   // Turn on the uSUP power
+  pinMode(Power, OUTPUT);      // Set EN pin for uSUP stabilisator as output
+  digitalWrite(Power, HIGH);   // Turn on the uSUP power
 
   Wire.begin(SDA, SCL);
  

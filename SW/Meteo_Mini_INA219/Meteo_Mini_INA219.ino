@@ -20,9 +20,24 @@
 
 Adafruit_INA219 ina219;
 
-#define SDA 19
-#define SCL 18
-#define PIN_ON 3
+#define Meteo_Mini_C3
+//#define Meteo_Mini_C6
+
+#if defined(Meteo_Mini_C3)
+
+  #define ADCpin  0
+  #define Power   4
+  #define SCL 18
+  #define SDA 19 
+
+#elif defined(Meteo_Mini_C6)
+
+  #define ADCpin  3
+  #define Power   1
+  #define SCL 5
+  #define SDA 4 
+
+#endif
 
 void setup(void) 
 {
@@ -33,8 +48,8 @@ void setup(void)
   }
     
   // for version 3.5 and higher need to turn uSUP ON
-  pinMode(PIN_ON, OUTPUT);      // Set EN pin for uSUP stabilisator as output
-  digitalWrite(PIN_ON, HIGH);   // Turn on the uSUP power
+  pinMode(Power, OUTPUT);      // Set EN pin for uSUP stabilisator as output
+  digitalWrite(Power, HIGH);   // Turn on the uSUP power
 
   Wire.begin(SDA, SCL);
   
