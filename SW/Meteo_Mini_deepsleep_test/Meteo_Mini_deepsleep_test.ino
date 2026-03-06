@@ -15,7 +15,7 @@
 //#define Meteo_Mini_C3
 #define Meteo_Mini_C6
 
-#define SLEEP_SEC 15
+#define SLEEP_SEC 65
 
 #if defined(Meteo_Mini_C3)
 
